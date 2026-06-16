@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khushi Singh - Pastel Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffeef8 0%, #e0f4ff 25%, #f0e6ff 50%, #fff9e6 75%, #e6f7f0 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            color: #d4a5d4;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(212, 165, 212, 0.2);
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #9db4d4;
+            font-weight: 300;
+        }
+
+        /* Grid Layout */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-pastel-pink {
+            border-color: #f5c6d9;
+            background: linear-gradient(135deg, #fff5f9 0%, #ffe6f0 100%);
+        }
+
+        .card-pastel-blue {
+            border-color: #c8e0f7;
+            background: linear-gradient(135deg, #f0f8ff 0%, #e0f4ff 100%);
+        }
+
+        .card-pastel-purple {
+            border-color: #e6d9f7;
+            background: linear-gradient(135deg, #f8f5ff 0%, #f0e6ff 100%);
+        }
+
+        .card-pastel-yellow {
+            border-color: #f5f0d9;
+            background: linear-gradient(135deg, #fffef5 0%, #fff9e6 100%);
+        }
+
+        .card-pastel-mint {
+            border-color: #d9f5f0;
+            background: linear-gradient(135deg, #f5fffd 0%, #e6f7f0 100%);
+        }
+
+        .card-pastel-coral {
+            border-color: #f5dcd0;
+            background: linear-gradient(135deg, #fff9f5 0%, #ffe6d9 100%);
+        }
+
+        /* Card Icon */
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+
+        /* Card Title */
+        .card-title {
+            font-size: 1.5em;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #555;
+        }
+
+        .card-pastel-pink .card-title {
+            color: #d4a5d4;
+        }
+
+        .card-pastel-blue .card-title {
+            color: #9db4d4;
+        }
+
+        .card-pastel-purple .card-title {
+            color: #b896d4;
+        }
+
+        .card-pastel-yellow .card-title {
+            color: #d4c897;
+        }
+
+        .card-pastel-mint .card-title {
+            color: #97d4c8;
+        }
+
+        .card-pastel-coral .card-title {
+            color: #d4b3a0;
+        }
+
+        /* Card Content */
+        .card-content {
+            font-size: 1em;
+            color: #777;
+            line-height: 1.6;
+        }
+
+        .stat-number {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 15px 0;
+            background: linear-gradient(135deg, #d4a5d4, #9db4d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Tech Stack Section */
+        .tech-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border: 2px solid #f5c6d9;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .tech-section h2 {
+            font-size: 2em;
+            color: #d4a5d4;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+        }
+
+        .tech-badge {
+            background: linear-gradient(135deg, #f5c6d9, #e0f4ff);
+            padding: 15px 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 0.9em;
+            font-weight: 600;
+            color: #555;
+            border: 2px solid #f5d9e6;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tech-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 165, 212, 0.3);
+        }
+
+        .tech-badge-1 { background: linear-gradient(135deg, #ffe6f0, #fff5f9); border-color: #f5c6d9; }
+        .tech-badge-2 { background: linear-gradient(135deg, #e0f4ff, #f0f8ff); border-color: #c8e0f7; }
+        .tech-badge-3 { background: linear-gradient(135deg, #f0e6ff, #f8f5ff); border-color: #e6d9f7; }
+        .tech-badge-4 { background: linear-gradient(135deg, #fff9e6, #fffef5); border-color: #f5f0d9; }
+        .tech-badge-5 { background: linear-gradient(135deg, #e6f7f0, #f5fffd); border-color: #d9f5f0; }
+        .tech-badge-6 { background: linear-gradient(135deg, #ffe6d9, #fff9f5); border-color: #f5dcd0; }
+
+        /* Social Links */
+        .social-section {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #d4a5d4, #9db4d4);
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(212, 165, 212, 0.3);
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 165, 212, 0.4);
+        }
+
+        /* Animations */
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>✨ Khushi Singh</h1>
+            <p>BE Information Technology Student | Developer | AI/ML Enthusiast</p>
+        </div>
+
+        <!-- Dashboard Grid -->
+        <div class="dashboard-grid">
+            <!-- Card 1: About -->
+            <div class="card card-pastel-pink">
+                <div class="card-icon">🎓</div>
+                <div class="card-title">About Me</div>
+                <div class="card-content">
+                    Student at MMMUT Gorakhpur passionate about DSA, AI/ML, Web Development, and Backend Technologies.
+                </div>
+            </div>
+
+            <!-- Card 2: Specializations -->
+            <div class="card card-pastel-blue">
+                <div class="card-icon">💡</div>
+                <div class="card-title">Specializations</div>
+                <div class="card-content">
+                    Data Structures & Algorithms, Machine Learning, Web Development, Backend Development
+                </div>
+            </div>
+
+            <!-- Card 3: GitHub Stats -->
+            <div class="card card-pastel-purple">
+                <div class="card-icon">📊</div>
+                <div class="card-title">GitHub Activity</div>
+                <div class="card-content">
+                    <div class="stat-number">📈</div>
+                    Active contributor showcasing projects and contributions
+                </div>
+            </div>
+
+            <!-- Card 4: Focus Areas -->
+            <div class="card card-pastel-yellow">
+                <div class="card-icon">🎯</div>
+                <div class="card-title">Current Focus</div>
+                <div class="card-content">
+                    Building projects combining AI/ML with web technologies
+                </div>
+            </div>
+
+            <!-- Card 5: Learning -->
+            <div class="card card-pastel-mint">
+                <div class="card-icon">📚</div>
+                <div class="card-title">Always Learning</div>
+                <div class="card-content">
+                    Continuously exploring new technologies and best practices in development
+                </div>
+            </div>
+
+            <!-- Card 6: Connect -->
+            <div class="card card-pastel-coral">
+                <div class="card-icon">🤝</div>
+                <div class="card-title">Connect with Me</div>
+                <div class="card-content">
+                    Open to collaborations and interesting projects
+                </div>
+            </div>
+        </div>
+
+        <!-- Tech Stack Section -->
+        <div class="tech-section">
+            <h2>💻 Tech Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-badge tech-badge-1">C</div>
+                <div class="tech-badge tech-badge-2">C++</div>
+                <div class="tech-badge tech-badge-3">Python</div>
+                <div class="tech-badge tech-badge-4">JavaScript</div>
+                <div class="tech-badge tech-badge-5">React</div>
+                <div class="tech-badge tech-badge-6">Node.js</div>
+                <div class="tech-badge tech-badge-1">HTML/CSS</div>
+                <div class="tech-badge tech-badge-2">SQL</div>
+                <div class="tech-badge tech-badge-3">MongoDB</div>
+                <div class="tech-badge tech-badge-4">Git</div>
+                <div class="tech-badge tech-badge-5">ML/AI</div>
+                <div class="tech-badge tech-badge-6">REST APIs</div>
+            </div>
+        </div>
+
+        <!-- Social Section -->
+        <div class="social-section">
+            <div class="social-links">
+                <a href="mailto:khushilko26@gmail.com" class="social-btn" title="Email">✉️</a>
+                <a href="https://github.com/khushi26singh" class="social-btn" title="GitHub">🐙</a>
+                <a href="https://linkedin.com" class="social-btn" title="LinkedIn">💼</a>
+                <a href="https://twitter.com" class="social-btn" title="Twitter">🐦</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
